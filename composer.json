@@ -12,5 +12,15 @@
     ],
     "require-dev": {
         "orchestra/testbench": "^9.5"
+    },
+    "extras":{
+        "laravel": {
+            "providers": [
+                "Wasimrasheed\\EWallet\\EWalletServiceProvider"
+            ],
+            "aliases": {
+                "EWallet": "Wasimrasheed\\EWallet\\Facades\\EWallet"
+            }
+        }
     }
 }
