@@ -1,0 +1,16 @@
+{
+    "name": "wasimrasheed/e-wallet",
+    "autoload": {
+        "psr-4": {
+            "Wasimrasheed\\EWallet\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Wasim Rasheed"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^9.5"
+    }
+}
