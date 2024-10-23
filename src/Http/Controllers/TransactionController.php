@@ -1,13 +1,12 @@
 <?php
 
 namespace Wasimrasheed\EWallet\Http\Controllers;
-use Wasimrasheed\EWallet\Contracts\BaseInterface;
-use Wasimrasheed\EWallet\Http\Trait\CrudTrait;
-use Wasimrasheed\EWallet\Models\Wallet;
+use Wasimrasheed\EWallet\Models\Transaction;
 
-readonly class TransactionController implements BaseInterface
+class TransactionController  extends BaseController
 {
-    use CrudTrait;
-    public function __construct(private TransactionController $model)
-    {}
+    public function __construct(Transaction $model)
+    {
+        parent::__construct($model);
+    }
 }

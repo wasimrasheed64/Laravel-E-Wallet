@@ -17,6 +17,7 @@ return new class extends Migration
                 $table->uuid('wallet_id');
                 $table->string('last_four_digit', 4);
                 $table->string('expiry');
+                $table->boolean('status')->default(true);
                 $table->longText('encrypted_card');
                 $table->timestamps();
         });

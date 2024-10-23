@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('user_id');
             $table->string('phone_number');
             $table->boolean('is_verified')->default(false);
+            $table->boolean('status')->default(false);
             $table->decimal('balance', 15, 2)->default(0);
             $table->decimal('balance_calculator', 15, 2)->default(0);
             $table->longText('balance_hash');

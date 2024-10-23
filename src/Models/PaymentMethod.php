@@ -15,7 +15,9 @@ class PaymentMethod extends Model
         'wallet_id',
         'last_four_digit',
         'expiry',
+        'json',
         'encrypted_card',
+        'status',
     ];
 
     // A payment method belongs to a wallet

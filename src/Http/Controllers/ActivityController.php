@@ -3,13 +3,12 @@
 namespace Wasimrasheed\EWallet\Http\Controllers;
 
 use Wasimrasheed\EWallet\Contracts\BaseInterface;
-use Wasimrasheed\EWallet\Http\Trait\CrudTrait;
 use Wasimrasheed\EWallet\Models\Activity;
 
-readonly class ActivityController implements BaseInterface
+class ActivityController extends BaseController
 {
-    use CrudTrait;
-    public function __construct(private readonly Activity $model)
-    {}
-
+    public function __construct(Activity $model)
+    {
+        parent::__construct($model);
+    }
 }

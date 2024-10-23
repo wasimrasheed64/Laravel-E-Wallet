@@ -18,6 +18,7 @@ class Transaction extends Model
         'cashType',
         'transaction_type',
         'payment_method',
+        'external_transaction_id',
         'activity',
         'status',
         'notes',

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('transaction_type');
             $table->string('payment_method');
             $table->uuid('activity');
+            $table->string('external_transaction_id');
             $table->boolean('status')->default(false);
             $table->longText('notes')->nullable();
             $table->timestamps();

@@ -2,31 +2,65 @@
 
 namespace Wasimrasheed\EWallet\Http\Trait;
 
+use Illuminate\Database\Eloquent\Collection;
+
+/**
+ *
+ */
 trait CrudTrait
 {
-    public function getById($id)
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getById($id): mixed
     {
         return $this->model->where('uuid', $id)->first();
     }
 
-    public function getByColumn($item, $column)
+    /**
+     * @param $item
+     * @param $column
+     * @return mixed
+     */
+    public function getByColumn($item, $column): mixed
     {
         return $this->model->where($column, $item)->first();
     }
 
-    public function store(array $data)
+    /**
+     * @param array $data
+     * @return mixed
+     */
+    public function store(array $data): mixed
     {
-        $record = $this->getById($id);
-        return $record->update($data);
+        return $this->model->create($data);
     }
 
-    public function update($id, array $data)
+    /**
+     * @param $id
+     * @param array $data
+     * @return mixed
+     */
+    public function update($id, array $data): mixed
     {
         return $this->model->where('uuid', $id)->update($data);
     }
 
-    public function delete($id)
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function delete($id): mixed
     {
         return $this->model->where('uuid', $id)->delete();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getAll(): Collection
+    {
+        return $this->model->all();
     }
 }

@@ -18,6 +18,7 @@ class Wallet extends Model
         'balance',
         'balance_calculator',
         'balance_hash',
+        'status',
     ];
 
 
