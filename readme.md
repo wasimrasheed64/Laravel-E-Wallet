@@ -16,7 +16,7 @@ The **EWallet** package is a flexible and modular Laravel package that provides 
 
 1. Install the package via composer:
    ```bash
-   composer require wasimrasheed/ewallet
+   ccomposer require wasimrasheed/e-wallet
    ```
 
 2. Register the service provider in config/app.php if not using auto-discovery:
