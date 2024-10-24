@@ -4,6 +4,7 @@ namespace Wasimrasheed\EWallet\Http\Trait;
 
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Wasimrasheed\EWallet\Exception\WalletException;
 use Wasimrasheed\EWallet\Http\Controllers\PaymentMethodController;
 use Wasimrasheed\EWallet\Http\Controllers\TransactionController;
 use Wasimrasheed\EWallet\Http\Controllers\WalletController;
@@ -11,118 +12,73 @@ use Wasimrasheed\EWallet\Validations\PaymentMethodValidations;
 use Wasimrasheed\EWallet\Validations\TransactionValidations;
 use Wasimrasheed\EWallet\Validations\WalletValidations;
 
-/**
- *
- */
+
 trait CreatePaymentValidationTrait
 {
 
     /**
-     * @var PaymentMethodController
-     */
-    protected PaymentMethodController $paymentMethodController;
-    protected PaymentMethodValidations $paymentMethodValidations;
-
-    /**
-     * Constructor to inject the TransactionController.
-     */
-    public function initCreatePaymentValidationTrait(PaymentMethodController $paymentMethodController, PaymentMethodValidations $paymentMethodValidations): void
-    {
-        $this->paymentMethodController = $paymentMethodController;
-        $this->paymentMethodValidations = $paymentMethodValidations;
-    }
-
-
-    /**
      * @param array $data
      * @return mixed
-     * @throws Exception
+     * @throws WalletException
      */
     public function createPaymentMethod(array $data): mixed
     {
-        try{
-            $validatedData = $this->paymentMethodValidations->createPaymentMethodValidation($data);
-            return $this->paymentMethodController->store($validatedData);
-        }catch(Exception $e){
-            throw new Exception($e);
-        }
+        return $this->paymentMethodController->store($data);
     }
 
 
     /**
      * @param int $id
      * @return array
-     * @throws \Exception
+     * @throws WalletException
      */
     public function getPaymentMethod(int $id): array
     {
-        try {
-            return $this->paymentMethodController->getById($id);
-        }catch (Exception $e){
-            throw new Exception($e);
-        }
+        return $this->paymentMethodController->getById($id);
     }
 
 
     /**
      * @return Collection
-     * @throws Exception
      */
     public function getPaymentMethods(): Collection
     {
-        try {
-            return $this->paymentMethodController->getAll();
-        }catch (Exception $e){
-            throw new Exception($e);
-        }
+        return $this->paymentMethodController->getAll();
     }
 
     /**
      * @param int $id
      * @param array $data
      * @return string
-     * @throws \Exception
+     * @throws WalletException
      */
     public function updatePaymentMethod(int $id, array $data): string
     {
-        try{
-            $validatedData = $this->paymentMethodValidations->updatePaymentMethodValidation($data);
-            $this->paymentMethodController->update($id, $validatedData);
-            return 'Wallet updated successfully';
-        }catch(Exception $e){
-            throw new Exception($e);
-        }
+         $this->paymentMethodController->update($id, $data);
+         return 'Wallet updated successfully';
     }
 
 
     /**
      * @param int $id
      * @return string
-     * @throws Exception
+     * @throws WalletException
      */
     public function deletePaymentMethod(int $id): string
     {
-        try {
-            $this->paymentMethodController->delete($id);
-            return 'Wallet deleted successfully';
-        }catch (Exception $e){
-            throw new Exception($e);
-        }
+         $this->paymentMethodController->delete($id);
+         return 'Wallet deleted successfully';
     }
 
     /**
      * @param $item
      * @param $column
      * @return array
-     * @throws Exception
+     * @throws WalletException
      */
     public function getWPaymentMethodByColumn($item, $column): array
     {
-        try {
-            return $this->paymentMethodController->getByColumn($item, $column);
-        }catch (Exception $e){
-            throw new Exception($e);
-        }
+        return $this->paymentMethodController->getByColumn($item, $column);
     }
 
 }

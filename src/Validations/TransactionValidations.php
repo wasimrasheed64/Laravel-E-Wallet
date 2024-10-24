@@ -10,7 +10,7 @@ class TransactionValidations
     /**
      * @throws ValidationException
      */
-    public  function createTransactionValidation($data): array
+    public  function createValidation($data): array
     {
         $validator = Validator::make($data, $this->createTransactionValidationRules());
         if ($validator->fails()) {
@@ -24,7 +24,7 @@ class TransactionValidations
     /**
      * @throws ValidationException
      */
-    public function updateTransactionValidation($data): array
+    public function updateValidation($data): array
     {
         $validator = Validator::make($data, $this->updateTransactionValidationRules());
         if ($validator->fails()) {

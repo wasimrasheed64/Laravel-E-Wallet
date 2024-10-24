@@ -10,7 +10,7 @@ class PaymentMethodValidations
     /**
      * @throws ValidationException
      */
-    public  function createPaymentMethodValidation($data): array
+    public  function createValidation($data): array
     {
         $validator = Validator::make($data, $this->createPaymentMethodValidationRules());
         if ($validator->fails()) {
@@ -24,7 +24,7 @@ class PaymentMethodValidations
     /**
      * @throws ValidationException
      */
-    public function updatePaymentMethodValidation($data): array
+    public function updateValidation($data): array
     {
         $validator = Validator::make($data, $this->updatePaymentMethodValidationRules());
         if ($validator->fails()) {

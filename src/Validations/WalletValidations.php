@@ -10,9 +10,9 @@ class WalletValidations
     /**
      * @throws ValidationException
      */
-    public  function createWalletValidation($data): array
+    public  function createValidation($data): array
     {
-        $validator = Validator::make($data, $this->createWalletValidationRules());
+        $validator = Validator::make($data, $this->createValidationRules());
         if ($validator->fails()) {
             throw new ValidationException($validator);
         }
@@ -24,16 +24,16 @@ class WalletValidations
     /**
      * @throws ValidationException
      */
-    public function updateWalletValidation($data): array
+    public function updateValidation($data): array
     {
-        $validator = Validator::make($data, $this->updateWalletValidationRules());
+        $validator = Validator::make($data, $this->updateValidationRules());
         if ($validator->fails()) {
             throw new ValidationException($validator);
         }
 
         return $validator->validated();
     }
-    public function createWalletValidationRules(): array
+    public function createValidationRules(): array
     {
         return [
             'user_id' => 'required|integer|exists:users,id',     // Must be a valid user ID that exists in the users table
@@ -46,7 +46,7 @@ class WalletValidations
         ];
     }
 
-    public static function updateWalletValidationRules(): array
+    public static function updateValidationRules(): array
     {
         return [
             'phone_number' => 'sometimes|string|size:11',         // You may adjust the size if your phone numbers differ in length

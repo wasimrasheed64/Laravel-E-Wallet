@@ -10,7 +10,7 @@ class ActivityValidations
     /**
      * @throws ValidationException
      */
-    public  function createActivityValidation($data): array
+    public  function createValidation($data): array
     {
         $validator = Validator::make($data, $this->createActivityValidationRules());
         if ($validator->fails()) {
@@ -24,7 +24,7 @@ class ActivityValidations
     /**
      * @throws ValidationException
      */
-    public function updateActivityValidation($data): array
+    public function updateValidation($data): array
     {
         $validator = Validator::make($data, $this->updateActivityValidationRules());
         if ($validator->fails()) {

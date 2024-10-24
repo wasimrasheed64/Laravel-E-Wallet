@@ -2,58 +2,115 @@
 
 namespace Wasimrasheed\EWallet\Http\Trait;
 
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
+use Wasimrasheed\EWallet\Exception\WalletException;
 
 /**
  *
  */
 trait CrudTrait
 {
+
     /**
      * @param $id
      * @return mixed
+     * @throws WalletException
      */
     public function getById($id): mixed
     {
-        return $this->model->where('uuid', $id)->first();
+        try {
+            return $this->model->findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            $model = strtolower(class_basename($e->getModel()));
+            $message = "No instance of {$model} with the given ID found.";
+            throw new WalletException($message, $e->getCode());
+        } catch (Exception $e) {
+            throw new WalletException($e->getMessage(), $e->getCode());
+        }
     }
+
 
     /**
      * @param $item
      * @param $column
      * @return mixed
+     * @throws WalletException
      */
     public function getByColumn($item, $column): mixed
     {
-        return $this->model->where($column, $item)->first();
+        try {
+            return $this->model->where($column, $item)->first();
+        } catch (ModelNotFoundException $e) {
+            $model = strtolower(class_basename($e->getModel()));
+            $message = "No instance of {$model} with the given ID found.";
+            throw new WalletException($message, $e->getCode());
+        } catch (Exception $e) {
+            throw new WalletException($e->getMessage(), $e->getCode());
+        }
     }
+
 
     /**
      * @param array $data
      * @return mixed
+     * @throws WalletException
      */
     public function store(array $data): mixed
     {
-        return $this->model->create($data);
+        try {
+            $validatedData = $this->validation->createValidation($data);
+            return $this->model->create($validatedData);
+        } catch (ValidationException $e) {
+            throw new WalletException(json_encode($e->validator->errors()->getMessages()), $e->getCode());
+        } catch (Exception $e) {
+            throw new WalletException($e->getMessage(), $e->getCode());
+        }
     }
+
 
     /**
      * @param $id
      * @param array $data
      * @return mixed
+     * @throws WalletException
      */
     public function update($id, array $data): mixed
     {
-        return $this->model->where('uuid', $id)->update($data);
+        try {
+            $record = $this->model->findOrFail($id);
+            $validatedData = $this->validation->updateValidation($data);
+            return $record->update($validatedData);
+        } catch (ValidationException $e) {
+            throw new WalletException(json_encode($e->validator->errors()->getMessages()), $e->getCode());
+        } catch (ModelNotFoundException $e) {
+            $model = strtolower(class_basename($e->getModel()));
+            $message = "No instance of {$model} with the given ID found.";
+            throw new WalletException($message, $e->getCode());
+        } catch (Exception $e) {
+            throw new WalletException($e->getMessage(), $e->getCode());
+        }
     }
 
     /**
      * @param $id
      * @return mixed
+     * @throws WalletException
      */
     public function delete($id): mixed
     {
-        return $this->model->where('uuid', $id)->delete();
+        try {
+            $record = $this->model->findOrFail($id);
+            return $record->delete();
+        } catch (ModelNotFoundException $e) {
+            $model = strtolower(class_basename($e->getModel()));
+            $message = "No instance of {$model} with the given ID found.";
+            throw new WalletException($message, $e->getCode());
+        } catch (Exception $e) {
+            throw new WalletException($e->getMessage(), $e->getCode());
+        }
     }
 
     /**

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Activity extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'uuid';
     protected $fillable = [
         'uuid',
         'action',
