@@ -40,7 +40,7 @@ class PaymentMethodValidations
             'wallet_id' => 'required|uuid|exists:wallets,uuid', // Ensures the wallet_id exists in the wallets table
             'last_four_digit' => 'required|string|size:4', // Exactly 4 digits for last four of card
             'expiry' => 'required|string|regex:/^(0[1-9]|1[0-2])\/?([0-9]{2})$/', // Validates MM/YY format
-            'json' => 'nullable|json',
+            'json' => 'sometimes|json',
             'status' => 'boolean',
             'encrypted_card' => 'required|string', // Encrypted card information
         ];
@@ -51,9 +51,9 @@ class PaymentMethodValidations
         return [
             'last_four_digit' => 'sometimes|string|size:4', // Exactly 4 digits for last four of card
             'expiry' => 'sometimes|string|regex:/^(0[1-9]|1[0-2])\/?([0-9]{2})$/', // Validates MM/YY format
-            'json' => 'nullable|json',
+            'json' => 'sometimes|json',
             'status' => 'boolean',
-            'encrypted_card' => 'required|string', // Encrypted card information
+            'encrypted_card' => 'sometimes|string', // Encrypted card information
         ];
     }
 }
