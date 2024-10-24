@@ -1,5 +1,6 @@
 {
     "name": "wasimrasheed/e-wallet",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Wasimrasheed\\EWallet\\": "src/"
