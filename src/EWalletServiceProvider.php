@@ -36,7 +36,7 @@ class EWalletServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Bind the EWallet class to the app container for easy access via dependency injection
-        $this->app->bind('EWallet', function ($app) {
+        $this->app->bind('EWallet', function () {
             return new EWallet();
         });
     }
