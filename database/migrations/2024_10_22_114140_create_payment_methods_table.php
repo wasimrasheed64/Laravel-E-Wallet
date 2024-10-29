@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payment_methods', function (Blueprint $table) {
+        Schema::create('wallet_payment_methods', function (Blueprint $table) {
                 $table->uuid('uuid')->primary();
                 $table->uuid('user_id');
                 $table->uuid('wallet_id');

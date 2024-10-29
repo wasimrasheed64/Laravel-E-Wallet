@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Wallet extends Model
 {
     use HasFactory;
+    protected $table = 'digital_wallets';
     protected $primaryKey = 'uuid';
 
     protected $fillable = [

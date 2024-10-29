@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Transaction extends Model
 {
     use HasFactory;
+    protected $table = 'wallet_transactions';
     protected $primaryKey = 'uuid';
     protected $fillable = [
         'uuid',
