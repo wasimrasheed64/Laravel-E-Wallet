@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wallet_transactions', function (Blueprint $table) {
+        Schema::create('digital_wallet_transactions', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
             $table->uuid('wallet_id');
             $table->uuid('user_id');

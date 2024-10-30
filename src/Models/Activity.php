@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Activity extends Model
 {
     use HasFactory;
-    protected $table = 'wallet_activities';
+    protected $table = 'digital_wallet_activities';
     protected $primaryKey = 'uuid';
     protected $fillable = [
         'uuid',

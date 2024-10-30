@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PaymentMethod extends Model
 {
     use HasFactory;
-    protected  $table = 'wallet_payment_methods';
+    protected  $table = 'digital_wallet_payment_methods';
     protected $primaryKey = 'uuid';
     protected $fillable = [
         'uuid',
