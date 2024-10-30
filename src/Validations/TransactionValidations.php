@@ -36,8 +36,8 @@ class TransactionValidations
     public function createTransactionValidationRules(): array
     {
         return [
-            'wallet_id' => 'required|uuid',
-            'user_id' => 'required|uuid',
+            'wallet_id' => 'required',
+            'user_id' => 'required',
             'amount' => 'required|numeric|min:0',
             'cashflowIn' => 'required|boolean',
             'cashType' => 'required|in:topUp,loyalty,purchase,purchaseReward,refunded', // assuming these are the only valid values
