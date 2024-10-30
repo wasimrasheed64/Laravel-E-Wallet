@@ -36,7 +36,7 @@ class WalletValidations
     public function createValidationRules(): array
     {
         return [
-            'user_id' => 'required|uuid|exists:users,id',     // Must be a valid user ID that exists in the users table
+            'user_id' => 'required|uuid|exists:users,uuid',     // Must be a valid user ID that exists in the users table
             'phone_number' => 'required|string|size:11',         // You may adjust the size if your phone numbers differ in length
             'is_verified' => 'required|boolean',                 // Ensures it is either true or false
             'balance' => 'required|numeric|min:0',               // Must be a non-negative numeric value
