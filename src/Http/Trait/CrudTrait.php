@@ -5,6 +5,7 @@ namespace Wasimrasheed\EWallet\Http\Trait;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Wasimrasheed\EWallet\Exception\WalletException;
 
@@ -61,6 +62,7 @@ trait CrudTrait
     public function store(array $data): mixed
     {
         try {
+            $data['uuid'] = Str::uuid();
             $validatedData = $this->validation->createValidation($data);
             return $this->model->create($validatedData);
         } catch (ValidationException $e) {

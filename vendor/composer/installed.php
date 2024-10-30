@@ -3,7 +3,7 @@
         'name' => 'wasimrasheed/e-wallet',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '49626cd2faff75f85cd8e52425ca8d6a0beb46b0',
+        'reference' => '80bcd8ba50cd3d82d68db42785ae4c332e3a570b',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -742,8 +742,8 @@
         'psr/container-implementation' => array(
             'dev_requirement' => true,
             'provided' => array(
-                0 => '^1.0',
-                1 => '1.1|2.0',
+                0 => '1.1|2.0',
+                1 => '^1.0',
             ),
         ),
         'psr/event-dispatcher' => array(
@@ -818,8 +818,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => true,
             'provided' => array(
-                0 => '3.0.0',
-                1 => '1.0|2.0|3.0',
+                0 => '1.0|2.0|3.0',
+                1 => '3.0.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -1404,7 +1404,7 @@
         'wasimrasheed/e-wallet' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '49626cd2faff75f85cd8e52425ca8d6a0beb46b0',
+            'reference' => '80bcd8ba50cd3d82d68db42785ae4c332e3a570b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
