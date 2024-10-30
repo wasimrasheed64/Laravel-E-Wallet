@@ -10,7 +10,6 @@ class Activity extends Model
 {
     use HasFactory;
     protected $table = 'digital_wallet_activities';
-    protected $primaryKey = 'uuid';
     protected $fillable = [
         'uuid',
         'action',

@@ -10,7 +10,6 @@ class PaymentMethod extends Model
 {
     use HasFactory;
     protected  $table = 'digital_wallet_payment_methods';
-    protected $primaryKey = 'uuid';
     protected $fillable = [
         'uuid',
         'user_id',

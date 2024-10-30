@@ -10,7 +10,6 @@ class Transaction extends Model
 {
     use HasFactory;
     protected $table = 'digital_wallet_transactions';
-    protected $primaryKey = 'uuid';
     protected $fillable = [
         'uuid',
         'wallet_id',

@@ -23,7 +23,7 @@ trait CrudTrait
     public function getById($id): mixed
     {
         try {
-            return $this->model->findOrFail($id);
+            return $this->model->where('uuid',$id)->first();
         } catch (ModelNotFoundException $e) {
             $model = strtolower(class_basename($e->getModel()));
             $message = "No instance of {$model} with the given ID found.";
@@ -62,9 +62,8 @@ trait CrudTrait
     public function store(array $data): mixed
     {
         try {
-            $data['uuid'] = Str::uuid();
             $validatedData = $this->validation->createValidation($data);
-            return $this->model->create($validatedData);
+            return $this->model->create($validatedData+['uuid' => Str::uuid()]);
         } catch (ValidationException $e) {
             throw new WalletException(json_encode($e->validator->errors()->getMessages()), $e->getCode());
         } catch (Exception $e) {
@@ -82,7 +81,7 @@ trait CrudTrait
     public function update($id, array $data): mixed
     {
         try {
-            $record = $this->model->findOrFail($id);
+            $record = $this->model->where('uuid',$id)->first();
             $validatedData = $this->validation->updateValidation($data);
             return $record->update($validatedData);
         } catch (ValidationException $e) {
@@ -104,7 +103,7 @@ trait CrudTrait
     public function delete($id): mixed
     {
         try {
-            $record = $this->model->findOrFail($id);
+            $record = $this->model->where('uuid',$id)->first();
             return $record->delete();
         } catch (ModelNotFoundException $e) {
             $model = strtolower(class_basename($e->getModel()));
