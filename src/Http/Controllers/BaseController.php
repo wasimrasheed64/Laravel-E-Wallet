@@ -19,7 +19,7 @@ class BaseController implements BaseInterface
     /**
      * @var mixed Holds the model instance that will be used for performing CRUD operations.
      */
-    private mixed $model;
+    protected mixed $model;
 
     /**
      * @var mixed Holds the validation rules or class responsible for validating incoming data.
@@ -40,4 +40,7 @@ class BaseController implements BaseInterface
         $this->model = $model;             // Assigns the model to the controller.
         $this->validation = $validation;   // Assigns the validation to the controller.
     }
+
+
+
 }

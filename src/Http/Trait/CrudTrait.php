@@ -120,4 +120,15 @@ trait CrudTrait
     {
         return $this->model->all();
     }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function getByUser(int $id): array
+    {
+        return $this->model->where('user_id', $id)->get()->toArray();
+    }
+
+
 }

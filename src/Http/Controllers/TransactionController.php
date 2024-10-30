@@ -2,6 +2,7 @@
 
 namespace Wasimrasheed\EWallet\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Collection;
 use Wasimrasheed\EWallet\Models\Transaction;
 use Wasimrasheed\EWallet\Validations\TransactionValidations;
 
@@ -28,5 +29,31 @@ class TransactionController extends BaseController
         // Call the parent constructor to initialize model and validation
         parent::__construct($model, $validations);
     }
+
+    /**
+     * @param $perPage
+     * @param $startDate
+     * @param $endDate
+     * @param $type
+     * @return Collection
+     */
+    public function getWithFilters($perPage, $startDate, $endDate, $type): Collection
+    {
+        $query = $this->model->query();
+        if($startDate) {
+            $query->where('created_at', '>=', $startDate);
+        }
+        if($endDate) {
+            $query->where('created_at', '<=', $endDate);
+        }
+        if($type) {
+            $query->where('transaction_type', $type);
+        }
+
+        return $query->paginate($perPage);
+    }
+
+
+
 }
 

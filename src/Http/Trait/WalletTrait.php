@@ -5,7 +5,7 @@ namespace Wasimrasheed\EWallet\Http\Trait;
 use Illuminate\Database\Eloquent\Collection;
 use Wasimrasheed\EWallet\Exception\WalletException;
 
-trait CreateWalletTrait
+trait WalletTrait
 {
 
     /**

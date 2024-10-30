@@ -5,10 +5,10 @@ use Wasimrasheed\EWallet\Http\Controllers\ActivityController;
 use Wasimrasheed\EWallet\Http\Controllers\PaymentMethodController;
 use Wasimrasheed\EWallet\Http\Controllers\TransactionController;
 use Wasimrasheed\EWallet\Http\Controllers\WalletController;
-use Wasimrasheed\EWallet\Http\Trait\CreateActivityTrait;
-use Wasimrasheed\EWallet\Http\Trait\CreatePaymentValidationTrait;
-use Wasimrasheed\EWallet\Http\Trait\CreateTransactionTrait;
-use Wasimrasheed\EWallet\Http\Trait\CreateWalletTrait;
+use Wasimrasheed\EWallet\Http\Trait\ActivityTrait;
+use Wasimrasheed\EWallet\Http\Trait\PaymentTrait;
+use Wasimrasheed\EWallet\Http\Trait\TransactionTrait;
+use Wasimrasheed\EWallet\Http\Trait\WalletTrait;
 use Wasimrasheed\EWallet\Models\Activity;
 use Wasimrasheed\EWallet\Models\PaymentMethod;
 use Wasimrasheed\EWallet\Models\Transaction;
@@ -28,7 +28,7 @@ use Wasimrasheed\EWallet\Validations\WalletValidations;
 class EWallet
 {
     // Including traits for wallet, activity, transaction, and payment validation-related operations.
-    use CreateWalletTrait, CreateActivityTrait, CreateTransactionTrait, CreatePaymentValidationTrait;
+    use WalletTrait, ActivityTrait, TransactionTrait, PaymentTrait;
 
     /**
      * @var WalletController

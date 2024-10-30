@@ -13,7 +13,7 @@ use Wasimrasheed\EWallet\Validations\TransactionValidations;
 use Wasimrasheed\EWallet\Validations\WalletValidations;
 
 
-trait CreatePaymentValidationTrait
+trait PaymentTrait
 {
 
     /**

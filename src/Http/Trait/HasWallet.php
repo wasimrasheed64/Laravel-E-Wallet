@@ -13,6 +13,7 @@ use Wasimrasheed\EWallet\Models\Wallet;
  * Provides relationship and helper methods for wallet, transactions, and payment methods.
  * @method hasOne(string $class, string $string, string $string1)
  * @method hasMany(string $class, string $string, string $string1)
+ * @property mixed $wallet
  */
 trait HasWallet
 {
@@ -85,4 +86,26 @@ trait HasWallet
 
         return $query->sum('amount');
     }
+
+
+    /**
+     * Get transactions with pagination and filter
+     */
+    public function getTransactions($perPage = 10, $startDate = null, $endDate = null, $transaction_type = null): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    {
+        $query = $this->transactions();
+
+        if ($startDate) {
+            $query->where('created_at', '>=', $startDate);
+        }
+        if ($endDate) {
+            $query->where('created_at', '<=', $endDate);
+        }
+        if ($transaction_type) {
+            $query->where('transaction_type', $transaction_type);
+        }
+
+        return $query->paginate($perPage);
+    }
+
 }
