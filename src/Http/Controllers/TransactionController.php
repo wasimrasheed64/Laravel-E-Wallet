@@ -52,8 +52,5 @@ class TransactionController extends BaseController
 
         return $query->paginate($perPage);
     }
-
-
-
 }
 
