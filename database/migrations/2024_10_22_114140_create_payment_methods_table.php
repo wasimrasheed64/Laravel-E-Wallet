@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('digital_wallet_payment_methods', function (Blueprint $table) {
                 $table->integer('id')->primary();
                 $table->uuid();
-                $table->uuid('user_id');
+                if(config('wallet.primary_key_type') !== 'uuid') {
+                    $table->integer('user_id');
+                } else {
+                    $table->uuid('user_id');
+                }
                 $table->uuid('wallet_id');
                 $table->string('last_four_digit', 4);
                 $table->string('expiry');

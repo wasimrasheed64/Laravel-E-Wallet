@@ -23,6 +23,11 @@ class EWalletServiceProvider extends ServiceProvider
     {
         // Load the package's migrations from the specified directory
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        if($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../../config/config.php'=>config_path('EWalletConfig.php'),
+            ],'config');
+        }
     }
 
     /**
@@ -35,6 +40,7 @@ class EWalletServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->mergeConfigFrom(__DIR__.'/../../config/config.php','ewallet');
         // Bind the EWallet class to the app container for easy access via dependency injection
         $this->app->bind('EWallet', function () {
             return new EWallet();

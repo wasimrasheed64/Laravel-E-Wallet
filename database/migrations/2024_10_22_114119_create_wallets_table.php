@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('digital_wallets', function (Blueprint $table) {
             $table->integer('id')->primary();
             $table->uuid();
-            $table->uuid('user_id');
+            if(config('wallet.primary_key_type') !== 'uuid') {
+                $table->integer('user_id');
+            } else {
+                $table->uuid('user_id');
+            }
             $table->string('phone_number');
             $table->boolean('is_verified')->default(false);
             $table->boolean('status')->default(false);

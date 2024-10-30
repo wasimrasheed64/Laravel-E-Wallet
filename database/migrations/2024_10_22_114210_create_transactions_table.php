@@ -15,7 +15,11 @@ return new class extends Migration
             $table->integer('id')->primary();
             $table->uuid();
             $table->uuid('wallet_id');
-            $table->uuid('user_id');
+            if(config('primary_key_type') !== 'uuid') {
+                $table->integer('user_id');
+            } else {
+                $table->uuid('user_id');
+            }
             $table->uuid('payment_method_id')->nullable();
             $table->uuid('activity_id')->nullable();
             $table->decimal('amount', 15, 2);
