@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('digital_wallets', function (Blueprint $table) {
-            $table->uuid('uuid')->primary();
+            $table->integer('id')->primary();
+            $table->uuid();
             $table->uuid('user_id');
             $table->string('phone_number');
             $table->boolean('is_verified')->default(false);

@@ -2,7 +2,6 @@
 
 namespace Wasimrasheed\EWallet\Http\Trait;
 
-use Illuminate\Support\Facades\Hash;
 use Wasimrasheed\EWallet\Models\PaymentMethod;
 use Wasimrasheed\EWallet\Models\Transaction;
 use Wasimrasheed\EWallet\Models\Wallet;
@@ -59,7 +58,7 @@ trait HasWallet
         }
 
         $hashedBalance = $this->generateWalletBalanceHash($this->getWalletBalance());
-        return Hash::check($hashedBalance, $this->wallet->balance_hash);
+        return $hashedBalance === $this->wallet->balance_hash;
     }
 
     /**
@@ -91,7 +90,7 @@ trait HasWallet
     /**
      * Get transactions with pagination and filter
      */
-    public function getTransactions($perPage = 10, $startDate = null, $endDate = null, $transaction_type = null): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    public function getTransactions($perPage = 10, $startDate = null, $endDate = null, $cashType = null): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
         $query = $this->transactions();
 
@@ -101,8 +100,8 @@ trait HasWallet
         if ($endDate) {
             $query->where('created_at', '<=', $endDate);
         }
-        if ($transaction_type) {
-            $query->where('transaction_type', $transaction_type);
+        if ($cashType) {
+            $query->where('cashType', $cashType);
         }
 
         return $query->paginate($perPage);

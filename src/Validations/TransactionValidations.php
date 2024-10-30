@@ -38,15 +38,16 @@ class TransactionValidations
         return [
             'wallet_id' => 'required',
             'user_id' => 'required',
+            'payment_method_id' => 'sometimes',
+            'activity_id' => 'sometimes',
             'amount' => 'required|numeric|min:0',
             'cashflowIn' => 'required|boolean',
-            'cashType' => 'required|in:topUp,loyalty,purchase,purchaseReward,refunded', // assuming these are the only valid values
-            'transaction_type' => 'required|in:easy_paisa,jazzcash,card', // assuming these are the valid transaction types
-            'payment_method' => 'required|string|max:255',
-            'external_transaction_id' => 'nullable|string|max:255',
-            'activity' => 'nullable|uuid',
+            'cashType' => 'required|string', // credit / debit
+            'transaction_type' => 'required', // assuming these are the only valid values topUp,loyalty,purchase,purchaseReward,refunded
+            'payment_method' => 'required|string|max:255', // card, jazz cash , easy pasia
+            'external_transaction_id' => 'sometimes|string|max:255',
             'status' => 'required|boolean',
-            'notes' => 'nullable|string',
+            'notes' => 'sometimes|string',
         ];
     }
 
@@ -59,7 +60,6 @@ class TransactionValidations
             'transaction_type' => 'sometimes',
             'payment_method' => 'sometimes|string|max:255',
             'external_transaction_id' => 'sometimes|string|max:255',
-            'activity' => 'sometimes|uuid',
             'status' => 'sometimes|boolean',
             'notes' => 'sometimes|string',
         ];

@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('digital_wallet_activities', function (Blueprint $table) {
-            $table->uuid('uuid')->primary();
+            $table->integer('id')->primary();
+            $table->uuid();
             $table->string('action');
             $table->decimal('points', 15, 2)->default(0);
             $table->timestamps();

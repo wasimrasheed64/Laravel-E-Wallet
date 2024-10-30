@@ -12,15 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('digital_wallet_transactions', function (Blueprint $table) {
-            $table->uuid('uuid')->primary();
+            $table->integer('id')->primary();
+            $table->uuid();
             $table->uuid('wallet_id');
             $table->uuid('user_id');
+            $table->uuid('payment_method_id')->nullable();
+            $table->uuid('activity_id')->nullable();
             $table->decimal('amount', 15, 2);
             $table->boolean('cashflowIn');
             $table->string('cashType');
             $table->string('transaction_type');
             $table->string('payment_method');
-            $table->uuid('activity');
             $table->string('external_transaction_id');
             $table->boolean('status')->default(false);
             $table->longText('notes')->nullable();
