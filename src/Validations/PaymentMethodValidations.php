@@ -36,7 +36,7 @@ class PaymentMethodValidations
     public function createPaymentMethodValidationRules(): array
     {
         return [
-            'user_id' => 'required|integer|exists:users,id',     // Must be a valid user ID that exists in the users table
+            'user_id' => 'required|uuid|exists:users,id',     // Must be a valid user ID that exists in the users table
             'wallet_id' => 'required|uuid|exists:wallets,uuid', // Ensures the wallet_id exists in the wallets table
             'last_four_digit' => 'required|string|size:4', // Exactly 4 digits for last four of card
             'expiry' => 'required|string|regex:/^(0[1-9]|1[0-2])\/?([0-9]{2})$/', // Validates MM/YY format
