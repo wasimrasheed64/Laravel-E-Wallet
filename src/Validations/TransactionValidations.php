@@ -36,7 +36,7 @@ class TransactionValidations
     public function createTransactionValidationRules(): array
     {
         return [
-            'wallet_id' => 'required|uuid|exists:wallets,id',
+            'wallet_id' => 'required|uuid',
             'user_id' => 'required|uuid',
             'amount' => 'required|numeric|min:0',
             'cashflowIn' => 'required|boolean',
