@@ -23,7 +23,7 @@ trait CrudTrait
     public function getById($id): mixed
     {
         try {
-            return $this->model->where('uuid',$id)->first();
+            return $this->model->where('uuid',$id)->firstOrFail();
         } catch (ModelNotFoundException $e) {
             $model = strtolower(class_basename($e->getModel()));
             $message = "No instance of {$model} with the given ID found.";
@@ -43,7 +43,7 @@ trait CrudTrait
     public function getByColumn($item, $column): mixed
     {
         try {
-            return $this->model->where($column, $item)->first();
+            return $this->model->where($column, $item)->firstOrFail();
         } catch (ModelNotFoundException $e) {
             $model = strtolower(class_basename($e->getModel()));
             $message = "No instance of {$model} with the given ID found.";
@@ -81,7 +81,7 @@ trait CrudTrait
     public function update($id, array $data): mixed
     {
         try {
-            $record = $this->model->where('uuid',$id)->first();
+            $record = $this->model->where('uuid',$id)->firstOrFail();
             $validatedData = $this->validation->updateValidation($data);
             return $record->update($validatedData);
         } catch (ValidationException $e) {
@@ -103,7 +103,7 @@ trait CrudTrait
     public function delete($id): mixed
     {
         try {
-            $record = $this->model->where('uuid',$id)->first();
+            $record = $this->model->where('uuid',$id)->firstOrFail();
             return $record->delete();
         } catch (ModelNotFoundException $e) {
             $model = strtolower(class_basename($e->getModel()));
